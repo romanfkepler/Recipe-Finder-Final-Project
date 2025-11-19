@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Recipe Finder - Home</title>
-        <link rel="stylesheet" href="normalize.css"/>
-        <link rel="stylesheet" href="home_styles.css"/>
-        <script src="home.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <!-- Logo, Nav Bar [Home | Recipes | Contact/About], Search Bar -->
-            <div class="logo">
-                <h1>🍴 Recipe Finder</h1>
-            </div>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Recipe Finder - Home</title>
+    <link rel="stylesheet" href="normalize.css"/>
+    <link rel="stylesheet" href="home_styles.css"/>
+    <script src="recipes.js" defer></script>
+    <script src="home.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- Logo, Nav Bar [Home | Recipes | Contact/About], Search Bar -->
+        <div class="logo">
+            <h1>🍴 Recipe Finder</h1>
+        </div>
 
-            <nav>
-                <ul>
-                    <li><a href="home.html" class="active">Home</a></li>
-                    <li><a href="recipe_results.html">Recipes</a></li>
-                    <li><a href="contact_about.html">Contact/About</a></li>
-                </ul>
-            </nav>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="recipe_results.html">Recipes</a></li>
+                <li><a href="contact_about.html">Contact/About</a></li>
+            </ul>
+        </nav>
 
-            <!-- Search Form -->
-            <form id="searchForm">
-                <input 
-                    type="text" 
-                    id="ingredientInput" 
-                    placeholder="Enter ingredients (e.g., chicken, rice)" 
-                    required
-                >
-                <button type="submit">Search</button>
-            </form>
-        </header>
+        <!-- Search Form -->
+        <form id="searchForm">
+            <input 
+                type="text" 
+                id="ingredientInput" 
+                placeholder="Enter ingredients (e.g., chicken, rice)" 
+                required
+            >
+            <button type="submit">Search</button>
+        </form>
+    </header>
 
-        <main>
-            <!-- Featured Recipes -->
-            <section id="featured-recipes">
-                <h2>Featured Recipes</h2>
-                <div class="featured-cards">
-                    <div class="recipe-card">
-                        <img src="images/sample1-spagetti.jpg" alt="Classic Spaghetti">
-                        <h3>Classic Spaghetti</h3>
-                        <p>Delicious pasta with tomato sauce and parmesan cheese.</p>
-                        <a href="recipe_results.html?ingredients=spaghetti">View Recipe</a>
-                    </div>
-                    <div class="recipe-card">
-                        <img src="images/sample2-chicken_curry.jpg" alt="Chicken Curry">
-                        <h3>Chicken Curry</h3>
-                        <p>Spicy and creamy chicken curry for a hearty meal.</p>
-                        <a href="recipe_results.html?ingredients=chicken">View Recipe</a>
-                    </div>
-                    <div class="recipe-card">
-                        <img src="images/sample3-avocodo_toast.jpg" alt="Avocado Toast">
-                        <h3>Avocado Toast</h3>
-                        <p>Healthy and quick avocado toast for breakfast or snack.</p>
-                        <a href="recipe_results.html?ingredients=avocado">View Recipe</a>
-                    </div>
+    <main>
+        <!-- Featured Recipes Section -->
+        <section id="featured-recipes">
+            <h2>Featured Recipes</h2>
+            <div class="cards-container" id="featuredCards">
+                <!-- JS will populate these cards dynamically -->
+                <!-- Static cards below kept for reference -->
+                <div class="recipe-card">
+                    <img src="images/sample1-spagetti.jpg" alt="Classic Spaghetti">
+                    <h3>Classic Spaghetti</h3>
+                    <p>Delicious pasta with tomato sauce and parmesan cheese.</p>
+                    <a href="recipe_results.html?ingredients=spaghetti">View Recipe</a>
                 </div>
-            </section>
-        </main>
+                <div class="recipe-card">
+                    <img src="images/sample2-chicken_curry.jpg" alt="Chicken Curry">
+                    <h3>Chicken Curry</h3>
+                    <p>Spicy and creamy chicken curry for a hearty meal.</p>
+                    <a href="recipe_results.html?ingredients=chicken">View Recipe</a>
+                </div>
+                <div class="recipe-card">
+                    <img src="images/sample3-avocodo_toast.jpg" alt="Avocado Toast">
+                    <h3>Avocado Toast</h3>
+                    <p>Healthy and quick avocado toast for breakfast or snack.</p>
+                    <a href="recipe_results.html?ingredients=avocado">View Recipe</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <footer>
-            <!-- Contact, Social Media Links, Copyright Info -->
-            <p>Contact us: <a href="mailto:recipefinder@example.com">recipefinder@example.com</a></p>
-            <p>Follow us:
-                <a href="#">Instagram</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Facebook</a>
-            </p>
-            <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
-        </footer>
-    </body>
+    <footer>
+        <!-- Contact, Social Media Links, Copyright Info -->
+        <p>Contact us: <a href="mailto:recipefinder@example.com">recipefinder@example.com</a></p>
+        <p>Follow us:
+            <a href="#">Instagram</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Facebook</a>
+        </p>
+        <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
+    </footer>
+</body>
 </html>
