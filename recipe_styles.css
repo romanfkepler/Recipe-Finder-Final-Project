@@ -61,6 +61,136 @@ nav a.active {
     background-color: #ffe0cc;
 }
 
+/* ========== MAIN CONTENT ========== */
+main {
+    padding: 2rem;
+    min-height: calc(100vh - 160px); /* ensures footer sticks at bottom */
+}
+
+/* ========== RECIPE CARDS ========== */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.recipe-card {
+    width: 250px;
+    height: 350px;
+    perspective: 1000px;
+    position: relative;
+}
+
+.recipe-card .card-front,
+.recipe-card .card-back {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.8s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: #fff;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.recipe-card .card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.recipe-card .card-front img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.recipe-card .card-front h3 {
+    margin: 0.5rem 0;
+}
+
+.recipe-card .card-front button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #ff7043;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.recipe-card .card-front button:hover {
+    background-color: #e64a19;
+}
+
+.recipe-card .card-back {
+    transform: rotateY(180deg);
+    overflow-y: auto;
+}
+
+.recipe-card.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.recipe-card.flipped .card-back {
+    transform: rotateY(0deg);
+}
+
+.card-back h3 {
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.card-back h4 {
+    margin: 0.5rem 0;
+}
+
+.card-back ul {
+    padding-left: 1.2rem;
+}
+
+.card-back p {
+    margin: 0.3rem 0;
+}
+
+/* Buttons on back */
+.card-back .back-btn,
+.card-back .print-btn {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card-back .back-btn {
+    background-color: #555;
+    color: white;
+    margin-right: 0.5rem;
+}
+
+.card-back .back-btn:hover {
+    background-color: #333;
+}
+
+.card-back .print-btn {
+    background-color: #ff7043;
+    color: white;
+}
+
+.card-back .print-btn:hover {
+    background-color: #e64a19;
+}
 
 /* ========== FOOTER ========== */
 footer {
@@ -68,9 +198,10 @@ footer {
     color: white;
     text-align: center;
     padding: 1.5rem 1rem;
-    margin-top: 2rem;
+    margin-top: auto; /* sticks to bottom if content is short */
 }
 
+/* Footer links */
 footer a {
     color: #fff;
     text-decoration: underline;
@@ -78,4 +209,33 @@ footer a {
 
 footer a:hover {
     color: #ffe0cc;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 1rem 0;
+    }
+
+    #searchForm {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .recipe-card {
+        width: 90%;
+        height: auto;
+    }
 }
