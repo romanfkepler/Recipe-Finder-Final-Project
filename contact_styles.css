@@ -1,1 +1,80 @@
 /* CONTACT PAGE STYLESHEET */
+
+/* ========== HEADER ========== */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ff7043;
+    padding: 1rem 2rem;
+    color: white;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover,
+nav a.active {
+    text-decoration: underline;
+}
+
+/* Search Form */
+#searchForm {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+#searchForm input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#searchForm button {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#searchForm button:hover {
+    background-color: #ffe0cc;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background-color: #ff7043;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #ffe0cc;
+}
