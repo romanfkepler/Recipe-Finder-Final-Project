@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Recipe Finder - Results</title>
-        <link rel="stylesheet" href="normalize.css"/>
-        <link rel="stylesheet" href="recipe_styles.css"/>
-        <script src="recipes.js" defer></script>
-    </head>
-    <body>
-        <header>
-             <!-- Logo, Nav Bar [Home | Recipes | Contact/About], Search Bar -->
-            <div class="logo">
-                <h1>🍴 Recipe Finder</h1>
-            </div>
+<head>
+    <meta charset="UTF-8" />
+    <title>Recipe Finder - Results</title>
+    <link rel="stylesheet" href="normalize.css"/>
+    <link rel="stylesheet" href="recipe_styles.css"/>
+    <script src="recipes.js" defer></script>
+    <script src="recipe_results.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- Logo, Nav Bar [Home | Recipes | Contact/About], Search Bar -->
+        <div class="logo">
+            <h1>🍴 Recipe Finder</h1>
+        </div>
 
-            <nav>
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="recipe_results.html" class="active">Recipes</a></li>
-                    <li><a href="contact_about.html">Contact/About</a></li>
-                </ul>
-            </nav>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="recipe_results.html" class="active">Recipes</a></li>
+                <li><a href="contact_about.html">Contact/About</a></li>
+            </ul>
+        </nav>
 
-            <!-- Search Form -->
-            <form id="searchForm">
-                <input 
-                    type="text" 
-                    id="ingredientInput" 
-                    placeholder="Enter ingredients (e.g., chicken, rice)" 
-                    required
-                >
-                <button type="submit">Search</button>
-            </form>
-        </header>
-        
-        <main>
-            <!-- Recipe Cards, Print -->
-        </main>
-        
-        <footer>
-            <!-- Contact, Social Media Links, Copyright Info -->
-            <p>Contact us: <a href="mailto:recipefinder@example.com">recipefinder@example.com</a></p>
-            <p>Follow us:
-                <a href="#">Instagram</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Facebook</a>
-            </p>
-            <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
-        </footer>
-    </body>
+        <!-- Search Form -->
+        <form id="searchForm">
+            <input 
+                type="text" 
+                id="ingredientInput" 
+                placeholder="Search recipes by title, ingredient, or instruction" 
+                required
+            >
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    
+    <main>
+        <section class="cards-container" id="recipeCards">
+            <!-- Recipe cards populated here by JS -->
+        </section>
+    </main>
+    
+    <footer>
+        <!-- Contact, Social Media Links, Copyright Info -->
+        <p>Contact us: <a href="mailto:recipefinder@example.com">recipefinder@example.com</a></p>
+        <p>Follow us:
+            <a href="#">Instagram</a> |
+            <a href="#">Twitter</a> |
+            <a href="#">Facebook</a>
+        </p>
+        <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
+    </footer>
+</body>
 </html>
