@@ -1,55 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Recipe Finder - Results</title>
-    <link rel="stylesheet" href="normalize.css"/>
-    <link rel="stylesheet" href="recipe_styles.css"/>
-    <script src="recipes.js" defer></script>
-    <script src="recipe_results.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Results - Recipe Finder</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="home_styles.css">
 </head>
 <body>
-    <header>
-        <!-- Logo, Nav Bar [Home | Recipes | Contact/About], Search Bar -->
-        <div class="logo">
-            <h1>🍴 Recipe Finder</h1>
+  <!-- Header / Navigation -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Recipe Finder</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="recipe_results.html" class="active">Recipe Results</a></li>
+        <li><a href="contact_about.html">Contact/About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Search Section -->
+    <section class="search-section">
+      <h2>Search Recipes</h2>
+      <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search by ingredient, title, instruction, or nutrition">
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <!-- Recipe Cards Section -->
+    <section class="featured-recipes">
+      <div id="recipeCards" class="cards-container">
+        <!-- Recipes populated via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+      <a href="https://www.instagram.com" target="_blank">Instagram</a> |
+      <a href="https://www.twitter.com" target="_blank">Twitter</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="recipes.js"></script>
+  <script>
+    const recipeContainer = document.getElementById('recipeCards');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+
+    // Function to create a recipe card
+    function createRecipeCard(recipe) {
+      const card = document.createElement('div');
+      card.className = 'recipe-card';
+      card.innerHTML = `
+        <div class="card-front">
+          <img src="${recipe.image}" alt="${recipe.title}">
+          <h3>${recipe.title}</h3>
+          <button class="view-recipe">View Recipe</button>
         </div>
+        <div class="card-back">
+          <h4>Ingredients</h4>
+          <ul>${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
+          <h4>Instructions</h4>
+          <p>${recipe.instructions}</p>
+          <h4>Nutrition</h4>
+          <p>${recipe.nutrition}</p>
+          <button class="print-btn">Print Recipe</button>
+          <button class="back-btn">Back</button>
+        </div>
+      `;
+      recipeContainer.appendChild(card);
 
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="recipe_results.html" class="active">Recipes</a></li>
-                <li><a href="contact_about.html">Contact/About</a></li>
-            </ul>
-        </nav>
+      // Flip card
+      card.querySelector('.view-recipe').addEventListener('click', () => {
+        card.classList.add('flipped');
+      });
 
-        <!-- Search Form -->
-        <form id="searchForm">
-            <input 
-                type="text" 
-                id="ingredientInput" 
-                placeholder="Search recipes by title, ingredient, or instruction" 
-                required
-            >
-            <button type="submit">Search</button>
-        </form>
-    </header>
-    
-    <main>
-        <section class="cards-container" id="recipeCards">
-            <!-- Recipe cards populated here by JS -->
-        </section>
-    </main>
-    
-    <footer>
-        <!-- Contact, Social Media Links, Copyright Info -->
-        <p>Contact us: <a href="mailto:recipefinder@example.com">recipefinder@example.com</a></p>
-        <p>Follow us:
-            <a href="#">Instagram</a> |
-            <a href="#">Twitter</a> |
-            <a href="#">Facebook</a>
-        </p>
-        <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
-    </footer>
+      // Back button
+      card.querySelector('.back-btn').addEventListener('click', () => {
+        card.classList.remove('flipped');
+      });
+
+      // Print recipe
+      card.querySelector('.print-btn').addEventListener('click', () => {
+        printRecipe(card);
+      });
+    }
+
+    // Function to print only the selected recipe
+    function printRecipe(card) {
+      const printWindow = window.open('', '', 'width=800,height=600');
+      const recipeTitle = card.querySelector('.card-front h3').textContent;
+      const cardContent = card.querySelector('.card-back').innerHTML;
+
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Print Recipe - ${recipeTitle}</title>
+            <link rel="stylesheet" href="home_styles.css">
+            <style>
+              body { font-family: Arial, sans-serif; padding: 20px; background: #fff; color: #000; }
+              h1 { text-align: center; margin-bottom: 1rem; }
+              h4 { margin-bottom: 0.3rem; }
+              ul { margin-top: 0; padding-left: 1.2rem; }
+              button { display: none; }
+            </style>
+          </head>
+          <body>
+            <h1>${recipeTitle}</h1>
+            ${cardContent}
+          </body>
+        </html>
+      `);
+
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+      printWindow.close();
+    }
+
+    // Display all recipes initially
+    function displayRecipes(list) {
+      recipeContainer.innerHTML = '';
+      list.forEach(createRecipeCard);
+    }
+
+    displayRecipes(recipes);
+
+    // Search functionality
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        displayRecipes(recipes);
+        return;
+      }
+
+      const filtered = recipes.filter(recipe => {
+        return recipe.title.toLowerCase().includes(query) ||
+               recipe.ingredients.some(i => i.toLowerCase().includes(query)) ||
+               recipe.instructions.toLowerCase().includes(query) ||
+               recipe.nutrition.toLowerCase().includes(query);
+      });
+
+      if (filtered.length === 0) {
+        recipeContainer.innerHTML = '<p style="text-align:center;">No recipes found. Please check your spelling or try another keyword.</p>';
+      } else {
+        displayRecipes(filtered);
+      }
+    });
+
+    // Optional: Pre-fill search if query string exists
+    const urlParams = new URLSearchParams(window.location.search);
+    const ingredientQuery = urlParams.get('ingredients');
+    if (ingredientQuery) {
+      searchInput.value = ingredientQuery;
+      searchForm.dispatchEvent(new Event('submit'));
+    }
+  </script>
 </body>
 </html>
