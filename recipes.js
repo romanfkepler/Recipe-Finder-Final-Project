@@ -1,82 +1,89 @@
-// RECIPE RESULTS JAVASCRIPT
-document.addEventListener("DOMContentLoaded", () => {
-    const recipeContainer = document.getElementById("recipeCards");
-    const searchForm = document.getElementById("searchForm");
-    const ingredientInput = document.getElementById("ingredientInput");
+const recipes = [
+  {
+    title: "Spaghetti",
+    ingredients: ["spaghetti", "tomato", "garlic"],
+    instructions: "Cook spaghetti. Prepare sauce. Mix together.",
+    nutrition: "500 kcal per serving",
+    image: "images/sample1-spagetti.jpg"
+  },
+  {
+    title: "Chicken Curry",
+    ingredients: ["chicken", "curry powder", "onion", "garlic", "coconut milk"],
+    instructions: "Cook chicken with spices. Add coconut milk. Simmer until done.",
+    nutrition: "600 kcal per serving",
+    image: "images/sample2-chicken_curry.jpg"
+  },
+  {
+    title: "Avocado Toast",
+    ingredients: ["bread", "avocado", "lemon", "salt", "pepper"],
+    instructions: "Toast bread. Mash avocado with lemon, salt, and pepper. Spread on toast.",
+    nutrition: "250 kcal per serving",
+    image: "images/sample3-avocodo_toast.jpg"
+  },
+  {
+    title: "Chocolate Waffles",
+    ingredients: ["chocolate", "flour", "eggs", "milk"],
+    instructions: "Mix ingredients and cook on waffle iron.",
+    nutrition: "400 kcal per serving",
+    image: "images/sample4-chocolate_waffles.jpg"
+  },
+  {
+    title: "Scrambled Eggs",
+    ingredients: ["eggs", "butter", "salt", "pepper"],
+    instructions: "Beat eggs. Cook in butter while stirring.",
+    nutrition: "200 kcal per serving",
+    image: "images/sample5-scrambled_eggs.jpg"
+  },
+  {
+    title: "Chopped Greek Salad",
+    ingredients: ["cucumber", "tomato", "feta", "olive", "onion"],
+    instructions: "Chop all ingredients and mix together.",
+    nutrition: "150 kcal per serving",
+    image: "images/sample6-chopped_greek_salad.jpg"
+  },
+  {
+    title: "Spicy Pasta",
+    ingredients: ["pasta", "chili flakes", "garlic", "olive oil"],
+    instructions: "Cook pasta. Toss with garlic, chili, and olive oil.",
+    nutrition: "450 kcal per serving",
+    image: "images/sample7-spicy_pasta.webp"
+  },
+  {
+    title: "Creamy Garlic Pasta",
+    ingredients: ["pasta", "garlic", "cream", "parmesan"],
+    instructions: "Cook pasta. Make garlic cream sauce and mix together.",
+    nutrition: "500 kcal per serving",
+    image: "images/sample8-creamy_garlic_pasta.jpg"
+  },
+  {
+    title: "Chicken & Rice Taco Skillet",
+    ingredients: ["chicken", "rice", "taco seasoning", "beans", "cheese"],
+    instructions: "Cook chicken and rice with seasoning. Mix in beans and top with cheese.",
+    nutrition: "550 kcal per serving",
+    image: "images/sample9-chicken_rice_taco_skillet.jpg"
+  },
+  {
+    title: "Chicken & Mushrooms",
+    ingredients: ["chicken", "mushroom", "garlic", "cream"],
+    instructions: "Cook chicken and mushrooms with garlic and cream.",
+    nutrition: "500 kcal per serving",
+    image: "images/sample10-chicken_mushrooms.jpg"
+  },
+  {
+    title: "Honey Garlic Shrimp",
+    ingredients: ["shrimp", "honey", "garlic", "soy sauce"],
+    instructions: "Cook shrimp in honey-garlic-soy sauce until caramelized.",
+    nutrition: "350 kcal per serving",
+    image: "images/sample11-honey_garlic_shrimp.jpg"
+  },
+  {
+    title: "Grilled Lobster Tail",
+    ingredients: ["lobster tail", "butter", "garlic", "lemon"],
+    instructions: "Grill lobster tails with garlic butter and lemon.",
+    nutrition: "450 kcal per serving",
+    image: "images/sample12-grilled_lobster_tail.jpg"
+  }
+];
 
-    // Function to create a recipe card
-    function createRecipeCard(recipe) {
-        const card = document.createElement("div");
-        card.className = "recipe-card";
+module.exports = recipes;
 
-        card.innerHTML = `
-            <div class="card-front">
-                <img src="${recipe.image}" alt="${recipe.title}">
-                <h3>${recipe.title}</h3>
-                <button class="view-recipe">View Recipe</button>
-            </div>
-            <div class="card-back">
-                <h3>${recipe.title}</h3>
-                <h4>Ingredients</h4>
-                <ul>${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
-                <h4>Instructions</h4>
-                <p>${recipe.instructions}</p>
-                <h4>Nutrition</h4>
-                <p>${recipe.nutrition}</p>
-                <button class="back-btn">Back</button>
-                <button class="print-btn">Print Recipe</button>
-            </div>
-        `;
-
-        // Flip card
-        const viewBtn = card.querySelector(".view-recipe");
-        const backBtn = card.querySelector(".back-btn");
-        const printBtn = card.querySelector(".print-btn");
-
-        viewBtn.addEventListener("click", () => card.classList.add("flipped"));
-        backBtn.addEventListener("click", () => card.classList.remove("flipped"));
-        printBtn.addEventListener("click", () => {
-            const printContent = card.querySelector(".card-back").innerHTML;
-            const originalContent = document.body.innerHTML;
-            document.body.innerHTML = printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-            location.reload(); // reload to reattach JS events
-        });
-
-        return card;
-    }
-
-    // Function to display recipes based on search
-    function displayRecipes(filter = "") {
-        recipeContainer.innerHTML = "";
-        const query = filter.toLowerCase();
-
-        const filteredRecipes = recipes.filter(r =>
-            r.title.toLowerCase().includes(query) ||
-            r.ingredients.some(i => i.toLowerCase().includes(query)) ||
-            r.instructions.toLowerCase().includes(query)
-        );
-
-        const toDisplay = filteredRecipes.length ? filteredRecipes : recipes;
-
-        toDisplay.forEach(recipe => {
-            const card = createRecipeCard(recipe);
-            recipeContainer.appendChild(card);
-        });
-    }
-
-    // Check query string from URL
-    const params = new URLSearchParams(window.location.search);
-    const queryParam = params.get("ingredients") || "";
-    ingredientInput.value = queryParam;
-
-    displayRecipes(queryParam);
-
-    // Handle search form
-    searchForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const query = ingredientInput.value.trim();
-        displayRecipes(query);
-    });
-});
