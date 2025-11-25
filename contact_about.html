@@ -2,14 +2,15 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Recipe Finder - Contact Us</title>
+        <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍴</text></svg>">
         <link rel="stylesheet" href="normalize.css"/>
         <link rel="stylesheet" href="contact_styles.css"/>
         <script src="contact.js" defer></script>
     </head>
     <body>
         <header>
-             <!-- Logo, Nav Bar [Home | Recipes | Contact/About], Search Bar -->
             <div class="logo">
                 <h1>🍴 Recipe Finder</h1>
             </div>
@@ -22,12 +23,11 @@
                 </ul>
             </nav>
 
-            <!-- Search Form -->
             <form id="searchForm">
                 <input 
                     type="text" 
                     id="ingredientInput" 
-                    placeholder="Enter ingredients (e.g., chicken, rice)" 
+                    placeholder="Enter ingredients" 
                     required
                 >
                 <button type="submit">Search</button>
@@ -35,16 +35,58 @@
         </header>
         
         <main>
-            <!-- About, Contact Form, Feedback -->
+            <!-- About Section -->
+            <section class="about-section">
+                <h2>About Recipe Finder</h2>
+                <p>Welcome to Recipe Finder! We help you create delicious meals with the ingredients you already have at home.</p>
+                <p>Our mission is simple: make cooking accessible, fun, and waste-free. Just enter your available ingredients, and we'll show you creative recipes you can make right now.</p>
+            </section>
+
+            <!-- Contact Form Section -->
+            <section class="contact-section">
+                <h2>Contact Us</h2>
+                <p>Have questions, suggestions, or feedback? We'd love to hear from you!</p>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                        <span class="error-message" id="messageError"></span>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <h3>✓ Message Sent Successfully!</h3>
+                    <p>Thank you for contacting us. We'll get back to you soon!</p>
+                </div>
+            </section>
         </main>
         
         <footer>
-            <!-- Contact, Social Media Links, Copyright Info -->
             <p>Contact us: <a href="mailto:recipefinder@example.com">recipefinder@example.com</a></p>
             <p>Follow us:
-                <a href="#">Instagram</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Facebook</a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a> |
+                <a href="https://www.twitter.com" target="_blank" rel="noopener">Twitter</a> |
+                <a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
             </p>
             <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
         </footer>
