@@ -62,14 +62,14 @@ const recipes = [
     ingredients: ["chicken", "rice", "taco seasoning", "beans", "cheese"],
     instructions: "Cook chicken and rice with seasoning. Mix in beans and top with cheese.",
     nutrition: "550 kcal per serving",
-    image: "images/sample9-chicken_rice_taco_skillet.jpg"
+    image: "images/sample9-chicken_&_rice_taco_skillet.jpg"
   },
   {
     title: "Chicken & Mushrooms",
     ingredients: ["chicken", "mushroom", "garlic", "cream"],
     instructions: "Cook chicken and mushrooms with garlic and cream.",
     nutrition: "500 kcal per serving",
-    image: "images/sample10-chicken_mushrooms.jpg"
+    image: "images/sample10-chicken_&_mushrooms.jpg"
   },
   {
     title: "Honey Garlic Shrimp",
