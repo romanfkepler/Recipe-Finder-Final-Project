@@ -1,0 +1,87 @@
+<!-- contact_about.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Finder - Contact Us</title>
+  <link rel="stylesheet" href="normalize.css"/>
+  <link rel="stylesheet" href="contact_styles.css"/>
+  <script src="contact.js" defer></script>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="logo">
+      <h1>🍴 Recipe Finder</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="recipe_results.html">Recipes</a></li>
+        <li><a href="contact_about.html" class="active">Contact/About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Search Form -->
+    <form id="searchForm">
+      <input 
+        type="text" 
+        id="ingredientInput" 
+        placeholder="Enter ingredients (e.g., chicken, rice)" 
+        required
+      >
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- About Section -->
+    <section class="about">
+      <h2>About Recipe Finder</h2>
+      <p>
+        Recipe Finder helps you discover new recipes based on the ingredients you have at home.
+        Search for recipes, view instructions, and check nutrition info. Our goal is to make cooking
+        simple, fun, and delicious!
+      </p>
+    </section>
+
+    <!-- Group Members Section -->
+        <section class="about">
+            <h2>Group Members</h2>
+            <ul>
+                <li>Roman Kepler</li>
+                <li>Trisha Balamurugan</li>
+                <li>Emily Owens</li>
+                <li>Wesley Walling</li>
+            </ul>
+        </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="formFeedback"></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>Contact us: <a href="mailto:recipefinder@example.com">recipefinder@example.com</a></p>
+    <p>Follow us:
+      <a href="#">Instagram</a> |
+      <a href="#">Twitter</a> |
+      <a href="#">Facebook</a>
+    </p>
+    <p>&copy; 2025 Recipe Finder. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
