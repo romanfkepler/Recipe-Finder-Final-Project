@@ -17,7 +17,7 @@
         <h1>Recipe Finder</h1>
       </div>
       <ul class="nav-links">
-        <li><a href="home.html">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="recipe_results.html" class="active">Recipe Results</a></li>
         <li><a href="contact_about.html">Contact/About</a></li>
       </ul>
@@ -60,6 +60,16 @@
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
 
+    /**
+     * @description Create and display a recipe card
+     * @function createRecipeCard
+     * @param {Object} recipe
+     * @property {string} recipe.title
+     * @property {string} recipe.image
+     * @property {Array<string>} recipe.ingredients
+     * @property {string} recipe.instructions
+     * @property {string} recipe.nutrition
+     */
     // Function to create a recipe card
     function createRecipeCard(recipe) {
       const card = document.createElement('div');
@@ -99,7 +109,11 @@
       });
     }
 
-    // Function to print only the selected recipe
+    /**
+     * @description Print only the selected recipe
+     * @function printRecipe
+     * @param {HTMLDivElement} card
+     */
     function printRecipe(card) {
       const printWindow = window.open('', '', 'width=800,height=600');
       const recipeTitle = card.querySelector('.card-front h3').textContent;
@@ -131,7 +145,11 @@
       printWindow.close();
     }
 
-    // Display all recipes initially
+    /**
+     * @description Display all recipes initially
+     * @function displayRecipes
+     * @param {Array<Object>} list
+     */
     function displayRecipes(list) {
       recipeContainer.innerHTML = '';
       list.forEach(createRecipeCard);
@@ -139,7 +157,11 @@
 
     displayRecipes(recipes);
 
-    // Search functionality
+    /**
+     * @description Search functionality
+     * @event searchForm submit
+     * @param {Event} e
+     */
     searchForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const query = searchInput.value.trim().toLowerCase();
@@ -148,6 +170,16 @@
         return;
       }
 
+      /**
+       * @description Filter recipes based on search query
+       * @function filterRecipes
+       * @param {string} query
+       * @property {string} recipe.title
+       * @property {Array<string>} recipe.ingredients
+       * @property {string} recipe.instructions
+       * @property {string} recipe.nutrition
+       * @constant {Array<Object>} filtered
+       */
       const filtered = recipes.filter(recipe => {
         return recipe.title.toLowerCase().includes(query) ||
                recipe.ingredients.some(i => i.toLowerCase().includes(query)) ||
@@ -162,7 +194,11 @@
       }
     });
 
-    // Optional: Pre-fill search if query string exists
+    /**
+     * @description Pre-fill search if query string exists
+     * @constant {URLSearchParams} urlParams
+     * @constant {string} ingredientQuery
+     */
     const urlParams = new URLSearchParams(window.location.search);
     const ingredientQuery = urlParams.get('ingredients');
     if (ingredientQuery) {

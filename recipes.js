@@ -1,5 +1,16 @@
-//recipes.js
+/**
+ * @description Array containing recipe objects and data
+ */
 
+/**
+ * @constant {Array<Object>}
+ * @typedef {Object} Recipe
+ * @property {string} title - Title of the recipe
+ * @property {Array<string>} ingredients - List of ingredients
+ * @property {string} instructions - Cooking instructions
+ * @property {string} nutrition - Nutrition information
+ * @property {string} image - Image URL of the recipe
+ */
 const recipes = [
   {
     title: "Spaghetti",
@@ -87,6 +98,11 @@ const recipes = [
   }
 ];
 
+/**
+ * @description Export the recipes array for use in other modules
+ * @module recipes.js
+ * @returns {Array<Object>} recipes - Array of recipe objects
+ */
 module.exports = recipes;
 
 

@@ -1,15 +1,47 @@
-// home.js
+/**
+ * @file home.js
+ * @description JavaScript for the Home Page of Recipe Finder application
+ * @requires recipes.js
+ * @module home.js 
+ */
 
-// Function to print only the selected recipe with title
+/**
+ * @description Print only the selected recipe card with title
+ * @function printRecipe
+ * @param {HTMLDivElement} card 
+ * @constant {Window} printWindow - New window for printing
+ */
 function printRecipe(card) {
   const printWindow = window.open('', '', 'width=800,height=600');
 
-  // Get the recipe title from the front of the card
+  /**
+   * @description Get the recipe title from the front of the card
+   * @constant {string} recipeTitle
+   * @type {string}
+   * @example
+   * // If card title is "Spaghetti"
+   * const recipeTitle = card.querySelector('.card-front h3').textContent;
+   * // recipeTitle = "Spaghetti"
+   */
   const recipeTitle = card.querySelector('.card-front h3').textContent;
 
+  /**
+   * @description Get the back content (ingredients, instructions, nutrition)
+   * @constant {string} cardContent
+   * @type {string}
+   * @example
+   * // If card back contains ingredients, instructions, nutrition
+   * const cardContent = card.querySelector('.card-back').innerHTML;
+   * // cardContent = "<h4>Ingredients</h4>...<p>600 kcal per serving</p>"
+   */
   // Get the back content (ingredients, instructions, nutrition)
   const cardContent = card.querySelector('.card-back').innerHTML;
 
+  /**
+   * @description Write HTML content to the print window
+   * @param {string} recipeTitle
+   * @param {string} cardContent
+   */
   printWindow.document.write(`
     <html>
       <head>
@@ -36,10 +68,29 @@ function printRecipe(card) {
   printWindow.close();
 }
 
-// Populate Featured Recipes (first 3 from recipes.js)
+/**
+ * @description Populate Feature Recipes (first 3 from recipes.js)
+ * @constant {HTMLDivElement} featuredContainer
+ */
 const featuredContainer = document.getElementById('featuredCards');
+
+/**
+ * @description Get first 3 recipes as featured
+ * @constant {Array<Object>} featuredRecipes
+ */
 const featuredRecipes = recipes.slice(0, 3);
 
+/**
+ * @description Create recipe cards for featured recipes
+ * @function forEach
+ * @param {Object} recipe
+ * @property {string} recipe.title
+ * @property {Array<string>} recipe.ingredients
+ * @property {string} recipe.instructions
+ * @property {string} recipe.nutrition
+ * @property {string} recipe.image
+ * @constant {HTMLDivElement} card
+ */
 featuredRecipes.forEach(recipe => {
   const card = document.createElement('div');
   card.className = 'recipe-card';
@@ -62,7 +113,21 @@ featuredRecipes.forEach(recipe => {
   `;
   featuredContainer.appendChild(card);
 
-  // Flip to back on "View Recipe"
+  /**
+   * @description Flip to back on "View Recipe"
+   * @function
+   * @param {Event} e
+   * @constant {HTMLButtonElement} viewBtn
+   * @constant {HTMLButtonElement} backBtn
+   * @constant {HTMLButtonElement} printBtn
+   * @example
+   * // On clicking "View Recipe" button
+   * card.classList.add('flipped');
+   * // On clicking "Back" button
+   * card.classList.remove('flipped');
+   * // On clicking "Print Recipe" button
+   * printRecipe(card);
+   */
   const viewBtn = card.querySelector('.view-recipe');
   viewBtn.addEventListener('click', () => {
     card.classList.add('flipped');
@@ -79,6 +144,14 @@ featuredRecipes.forEach(recipe => {
   printBtn.addEventListener('click', () => printRecipe(card));
 });
 
+/**
+ * @description Search Form
+ * @function
+ * @param {Event} e
+ * @listens submit
+ * @typedef {HTMLFormElement} searchForm
+ * @property {HTMLInputElement} ingredientInput
+ */
 // Search Form
 const searchForm = document.getElementById('searchForm');
 searchForm.addEventListener('submit', (e) => {
